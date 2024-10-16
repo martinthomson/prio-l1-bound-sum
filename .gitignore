@@ -15,6 +15,7 @@
 /lib
 /node_modules/
 /versioned/
+__pycache__
 Gemfile.lock
 archive.json
 draft-ppm-thomson-l1-bound-sum.xml

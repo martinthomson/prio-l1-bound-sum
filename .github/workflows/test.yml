@@ -1,0 +1,42 @@
+name: Test
+
+on:
+  push:
+    branches:
+    - main
+    paths:
+    - .github/workflows/test.yml
+    - poc/**
+  pull_request:
+    paths:
+    - .github/workflows/test.yml
+    - poc/**
+
+jobs:
+  test:
+    name: Run unit tests for reference code
+    runs-on: ubuntu-latest
+    container:
+      image: sagemath/sagemath:latest
+      options: --user root
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v3
+
+    - name: Install git
+      run: |
+        apt update
+        apt install -y git
+
+    - name: Install dependencies
+      run: |
+        sage -pip install mypy
+        sage -pip install git+https://github.com/cfrg/draft-irtf-cfrg-vdaf@draft-irtf-cfrg-vdaf-12#subdirectory=poc
+
+    - name: Run tests
+      working-directory: poc
+      run: sage -python -m unittest
+
+    - name: Enforce type hints
+      working-directory: poc
+      run: sage -python -m mypy *.py tests/*.py
