@@ -28,6 +28,10 @@ author:
     fullname: "Martin Thomson"
     organization: Mozilla
     email: "mt@lowentropy.net"
+ -
+    fullname: "David Cook"
+    organization: ISRG
+    email: "divergentdave@gmail.com"
 
 normative:
 
