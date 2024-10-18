@@ -160,7 +160,7 @@ The `decode()` function is therefore identical to that in Prio3SumVec.
 
 ~~~ python
 def decode(self, output: list[F], _count) -> list[int]:
-    return [x.as_unsigned() for x in output)
+    return [x.as_unsigned() for x in output]
 ~~~
 
 
